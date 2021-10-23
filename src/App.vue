@@ -8,10 +8,21 @@
       clipped-right
       clipped-left
       :height="headerHeight"
-      class="grey lighten-5"
+      :color="isMobileDevice ? '#d32323' : 'grey lighten-5'"
     >
     <v-app-bar-nav-icon   @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <YelpSearch class="search-input"
+      <YelpSearch
+        v-if="!isMobileDevice"
+        class="search-input"
+        servicePlaceholder="service"
+        serviceTypeahead="Restaurant"
+        :serviceSuggestions="serviceSuggestions"
+      />
+
+      <YelpSearchMobile
+        v-if="isMobileDevice"
+        class="search-input"
+        id="mobile-search-input"
         servicePlaceholder="service"
         serviceTypeahead="Restaurant"
         :serviceSuggestions="serviceSuggestions"
@@ -150,17 +161,19 @@
 
 <script>
 import YelpSearch from './components/YelpSearch'
+import YelpSearchMobile from './components/YelpSearchMobile'
 
 export default {
   name: 'App',
 
   components: {
-    YelpSearch
+    YelpSearch,
+    YelpSearchMobile
   },
 
   data: function(){
     return{
-      drawer: true,
+      drawer: false,
       isFooterUp: false,
       scrollTop: 0,
       headerHeight: 100,
@@ -168,7 +181,18 @@ export default {
       serviceSuggestions: [
         "restaurants",
         "plumbers",
-        "bla bla bla"
+        "bla bla bla",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
       ],
       cardsElevation : [true, true, true, true, true, true, true, true, true, true]
     }
@@ -178,10 +202,26 @@ export default {
     drawerHeight(){
       return `calc(100vh - ${this.headerHeight}px)`;
       // return `100vh`
+    },
+
+    isMobileDevice(){
+      switch (this.$vuetify.breakpoint.name) {
+          case 'xs': return true
+          case 'sm': return true
+          default : return false
+        }
     }
   },
 
   methods:{
+    init(){
+      console.log('init')
+      if(!this.isMobileDevice){
+        console.log('false')
+        this.$set(this, "drawer", true)
+      }
+    },
+
     getIsFooterUp(){
       if(!this.$refs.footer) return false;
       const rect = this.$refs.footer.$el.getBoundingClientRect();
@@ -218,7 +258,8 @@ export default {
   },
 
   mounted(){
-    document.addEventListener('scroll',this.handleDocumentScroll)
+    document.addEventListener('scroll',this.handleDocumentScroll);
+    this.init();
   }
 };
 </script>
@@ -243,6 +284,10 @@ export default {
 
 .search-input{
   width: 700px;
+}
+
+#mobile-search-input{
+  margin: auto;
 }
 
 .left-drawer{
