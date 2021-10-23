@@ -67,6 +67,7 @@
 
     <v-navigation-drawer
       app
+      v-model="showMap"
       clipped
       right
       fixed
@@ -152,7 +153,7 @@
       app
       color="grey lighten-2"
       absolute
-      class="footer "
+      :class="showMap ? 'footer-desktop' : 'footer-mobile'"
     >
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, laudantium neque eos minus, pariatur sint nostrum culpa ipsam, distinctio sit repudiandae vitae. Maxime suscipit similique dolorem eligendi eveniet perferendis, placeat, ab rerum non aliquam dolore corporis autem? Incidunt libero vitae sit, adipisci porro saepe culpa, omnis consectetur ad, quidem at aspernatur? Accusantium, ipsum! Ea accusamus minus eaque. Autem quis expedita veniam nesciunt doloribus eos in aliquid error sit reiciendis! Nostrum consequatur molestiae eius delectus deleniti blanditiis a non cum tempora ullam. Dolor veniam repellendus quaerat magni cupiditate eveniet officia nam unde, quam voluptas soluta quod minima reprehenderit a est accusantium. Eos enim, iusto non assumenda dolores aut delectus suscipit distinctio optio id deleniti natus, odit culpa beatae perferendis vero nulla placeat corrupti sequi aliquid voluptas consectetur est exercitationem molestiae. Porro quas officiis obcaecati, rerum error provident voluptate voluptatem perspiciatis ea. Numquam impedit repellat facilis quos rerum earum fugit nihil, aperiam eos, a, mollitia voluptatum reiciendis. Minima repellendus accusantium velit vitae dolor deserunt, quisquam soluta aliquid suscipit hic quasi, dicta eveniet autem reiciendis iusto animi aperiam exercitationem reprehenderit, quos delectus fugit perspiciatis tempora. Doloremque quisquam itaque sed? Optio, a saepe ab at veniam dignissimos ipsum explicabo, corporis atque provident commodi praesentium odit reiciendis fugit expedita ex vitae libero excepturi esse debitis, ullam repellat. Aliquid voluptate totam ipsa nulla amet vitae, adipisci et expedita dignissimos, dicta sunt suscipit! Natus iusto temporibus pariatur iure eos explicabo provident voluptates laudantium incidunt quam voluptatem enim, sed dolorem voluptatibus eaque sequi, optio cupiditate! Quae consectetur at voluptate aspernatur ducimus enim dignissimos vero architecto, ad vitae sed quis, ea quisquam optio eligendi non animi sunt quaerat, autem nulla earum rerum! Molestias id at laudantium mollitia non ipsam doloremque, voluptates explicabo error perspiciatis quia deleniti veniam voluptate repudiandae iure consequatur? Illum sit dolore voluptas dolor quasi, libero saepe fugiat modi hic quis animi, dignissimos soluta repellendus explicabo vel beatae aliquid voluptatem fugit nihil quia? Quasi alias deleniti repellat iure optio ea sint. Natus molestiae reprehenderit nisi aliquid hic ex corporis, culpa, fuga asperiores, cumque maxime ea voluptate voluptas minus laudantium est nemo excepturi neque vero? Recusandae optio, quam, eveniet fuga delectus deserunt laborum excepturi sunt nam aperiam impedit explicabo reiciendis fugiat distinctio cumque, a incidunt deleniti repudiandae eaque minima asperiores quia? Dolorum est rem consequatur placeat. Ipsum natus iure error quidem! At facere error sit aliquid. Nobis libero, nisi exercitationem molestias obcaecati minima error voluptatum id, dolor possimus porro vitae dolore numquam fugit nam odio! Voluptatibus in doloribus fugiat quam dolores odit nam tempore eveniet deleniti mollitia nostrum temporibus iusto, maxime, vitae modi nobis reprehenderit dolor molestiae aliquam corporis quibusdam culpa? Accusamus neque beatae ipsum qui, natus quas assumenda veritatis quasi, labore dignissimos velit architecto, eos saepe rerum. Distinctio perferendis possimus maxime quia illum praesentium nobis ipsa, voluptatibus rerum veniam facilis dignissimos. Quae dolor praesentium qui exercitationem molestias natus accusamus ullam error aliquid fuga porro eum voluptatem facere, architecto suscipit. Suscipit dignissimos laudantium perspiciatis laborum corporis dolor ratione, soluta aliquam recusandae nulla ut illo quibusdam unde aspernatur at?
     </v-footer>
@@ -174,6 +175,7 @@ export default {
   data: function(){
     return{
       drawer: false,
+      showMap: null,
       isFooterUp: false,
       scrollTop: 0,
       headerHeight: 100,
@@ -265,7 +267,11 @@ export default {
 </script>
 
 <style scoped>
-.footer{
+.footer-desktop{
+  padding: 60px 440px 60px 40px;
+}
+
+.footer-mobile{
   padding: 60px 40px;
 }
 
